@@ -30,6 +30,10 @@ def check_and_restart_spots(project_id: str, zone: str):
         logger.info(f"Found {len(spot_instances)} spot VMs")
         
         for instance in spot_instances:
+            if instance.labels and instance.labels.get('exclude_from_keeper') == 'true':
+                logger.info(f"VM instance [{instance.name}] excluded from keeper, skipping...")
+                continue
+
             if instance.status == "TERMINATED":
                 logger.info(f"VM instance [{instance.name}] was preempted, attempting to bring back online...")
                 start_time = time.time()

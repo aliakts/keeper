@@ -7,7 +7,14 @@ A Cloud Function that automatically recovers terminated spot VMs in Google Cloud
 - Periodically checks spot VMs
 - Automatically restarts terminated VMs
 - Scheduled execution with Cloud Scheduler
+- VM exclusion with labels:
+  ```bash
+  # Exclude a VM from recovery
+  gcloud compute instances add-labels INSTANCE_NAME --labels=exclude_from_keeper=true
 
+  # Include a VM back
+  gcloud compute instances remove-labels INSTANCE_NAME --labels=exclude_from_keeper
+  ```
 
 ## Requirements
 
