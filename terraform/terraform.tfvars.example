@@ -1,0 +1,4 @@
+project_id = "your-project-id"
+region     = "your-region"      # e.g., "europe-west1"
+zone       = "your-zone"        # e.g., "europe-west1-b"
+schedule   = "*/1 * * * *"      # Run every minute
